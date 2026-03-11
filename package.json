@@ -1,0 +1,43 @@
+{
+  "name": "ts-node-skeleton",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skeleton TypeScript Node.js application",
+  "main": "dist/index.js",
+  "scripts": {
+    "cert:generate": "mkdir -p certs && openssl req -x509 -newkey rsa:2048 -sha256 -days 365 -nodes -keyout certs/localhost.key -out certs/localhost.crt -subj \"/CN=localhost\" -addext \"subjectAltName=DNS:localhost,IP:127.0.0.1\"",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.0",
+    "@types/supertest": "^6.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "jest": "^30.0.0",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "supertest": "^7.1.1",
+    "ts-jest": "^29.4.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}
