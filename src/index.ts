@@ -1,10 +1,11 @@
 import { app } from "./app";
 import fs from "node:fs";
 import https from "node:https";
+import path from "node:path";
 
 const port = Number(process.env.PORT ?? 3000);
-const certPath = process.env.HTTPS_CERT_PATH ?? "certs/localhost.crt";
-const keyPath = process.env.HTTPS_KEY_PATH ?? "certs/localhost.key";
+const certPath = path.resolve(process.cwd(), process.env.HTTPS_CERT_PATH ?? "certs/localhost.crt");
+const keyPath = path.resolve(process.cwd(), process.env.HTTPS_KEY_PATH ?? "certs/localhost.key");
 
 if (!fs.existsSync(certPath) || !fs.existsSync(keyPath)) {
   throw new Error(
